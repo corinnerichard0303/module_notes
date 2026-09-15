@@ -29,3 +29,8 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 check edit
+
+m<-matrix(data=c(1,2,3,4,5,6),nrow=2,ncol=3,byrow=TRUE)
+this will align the matrix to count from left to right, aka by row
+m<-matrix(data=c(1,2,3,4,5,6),nrow=2,ncol=3,byrow=FALSE)
+this will align the matrix to count from top to bottom, aka by column
