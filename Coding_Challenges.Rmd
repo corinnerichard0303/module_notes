@@ -42,3 +42,20 @@ m2<-cbind(v1,v2)
 this will bind the vectors next to eachother in two columns
 dim(m1) will tell you the number of rows (at 1) and the number of columns at index position 2
 str(m2) will tell details about a project
+array(data=1:90),dim=c(5,6,3) will create an array with 5 rows, 6 columns, and 3 levels
+after assigning a matrix, you can extract specific rows and columns and attach to a variable "x" using x<-m[row,column]... to do a group of multiple rows and columns, prefix the row/column numbers with c()
+to replace an elemnt of a matrix, identify the row and column number with m[row,column] and assign the new level as you would any other variable, with <- followed by the new value (note: to do a whole column/row, leave the unchanged spot blank, e.g.: m[,8]<-2 will change all of column 8 to 2)
+after making a list, to extract a single component of the list, use l[[x]], where x=the number from the list you want to extract
+if that element is a matrix and you want it to be a specific row and column in that matrix, follow the command with [row,column] of your choosing
+l[1:2] will extract the first two components of that list. To do specific numbers, use l[c(x,y)], where x and y are the numbers on the list you want to extract (e.g., l[c(1,3)] will give you the first and third elements on the list)
+names(l)<-c("name1", "name2",...) will name the items on the list
+data.frame() will make a list of titles and values based on how you frame it. E.g.: df <- data.frame (first heading = c("value1", "value2",...), second heading = c("value1", "value2",...), etc.)
+df<-read.csv("~/Desktop/randompeople-module4.csv",sep=",",header=TRUE, stringsAsFactors=FALSE) assigns a data frame to a csv file. sep= will separate the header names, header=true denotes that the first line is names of the columns, stringsAsFactors= will determine how R handles the columns... true will be best for statistical models (e.g. if a title is treatment, with values of frozen,raw,cooked, R will be able to compare those values against eachother and/or rank. =false will treat the columns as individual text with individual values (e.g. if a title is dob, each value is unique to that row)
+df<-cbind(df,id=c(x,y,...)) will add additional columns/variables to a data frame. rbind will add additional rows/cases
+OR, you can use "$" to add a new variable (e.g. df$school<-c(list of schools)), but this will add "school" as a character vector rather than a factor
+a character vector stores raw text strings, where a factor stores categorical data using an underlying structure of integers mapped to predefined text labels called levels (i.e. a character vector is an open-ended notepad, and a dactor is a multiple choice dropdown menu)
+new_df<- df[df$columnname == value,] will create a subset under the conditions you set for which column and which value you want to extract
+new_df<-df[df$columnname == value, c("column1", "column2", "column3"...)] will create a subset under the conditions you've set with only the columns that you select to include
+na.rm=TRUE will remove NAs (missing data) from a calculation
+Inf (and-Inf) is a numerical calculation too extreme to express
+NaN will be a result if a calculation is not a number, like a square root of a negative number
