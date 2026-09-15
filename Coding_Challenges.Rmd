@@ -59,3 +59,9 @@ new_df<-df[df$columnname == value, c("column1", "column2", "column3"...)] will c
 na.rm=TRUE will remove NAs (missing data) from a calculation
 Inf (and-Inf) is a numerical calculation too extreme to express
 NaN will be a result if a calculation is not a number, like a square root of a negative number
+a plain text file can be read using read.table(), where file= is the argument and header=true/false depending on field names; the sep=argument tells R what character is used as a separator or deliminater in the file; the skip= argument can be used to start reading a file after a set number of rows
+head(d) = first 6 lines of data (request more by [n:n] at end)
+tail(d) = last 6 lines of data
+for .txt files, sep= or delim = is "\t"
+for.csv files, sep= or delim= is ","
+d<-read_csv(file vector,col_names=TRUE) does the same as d<-read_delim(file vector, delim="",col names=TRUE)
