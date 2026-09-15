@@ -65,3 +65,4 @@ tail(d) = last 6 lines of data
 for .txt files, sep= or delim = is "\t"
 for.csv files, sep= or delim= is ","
 d<-read_csv(file vector,col_names=TRUE) does the same as d<-read_delim(file vector, delim="",col names=TRUE)
+str() tells you the info about a data set (numrows,numcolums) where head() previews the set so you can confirm you're reading the right data
