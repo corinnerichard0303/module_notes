@@ -85,7 +85,8 @@ tail(d) = last 6 lines of data
 for .txt files, sep= or delim = is "\t"
 for.csv files, sep= or delim= is ","
 
-d<-read_csv(file vector,col_names=TRUE) does the same as d<-read_delim(file vector, delim="",col names=TRUE)
+d<-read_csv(file vector,header=TRUE,sep=,stringsAsFactors=FALSE) 
+for loading a data file
 
 str() tells you the info about a data set (numrows,numcolums) where head() previews the set so you can confirm you're reading the right data
 dim() returns the number of rows and columns in a dataframe
@@ -93,4 +94,46 @@ also remember names(), colnames(), rownames()
 
 attach() binds the variables from the data fram named as an argument to the local namespace so that as long as the data frame is attached, variables can be caller by their names without explicitly referring to the datafram (don't need to use $ or bracket notation)
 -> remember to detach() when finished
+
+summary() gives a quick overview of wach column in a data frame
+--> numeric values will show a minimum, 25th percentile, median, mean, 75th percentile, and maximum
+--> factors will receive a count
+
+to use median(), remember that calling to the column name requires d$ as a prefix in order for R to know where you are referring to
+
+you can create a new variable that is a function of other column information
+--> for example: population density = population/area
+-->d$density<-d$population/d$area
+
+to get the n number of highest values, use order()
+--> d<-d[order(-d$value),] followed by d[1:10,]
+to get the n number of lowest values, use order()
+--> d<-d[order(d$value),] followed by d[1:10,]
+
+to extract a new variable containing a certain group of information from your dataset, use grep() or order()
+--> to get information on the top 20 largest values from a column, use new<-d[order(d$column),] followed by new[1:20,]
+you can then get information on these top 20 by assigning new[1:20,] to a new vector (x)
+to do subsequent calculations (e.g. median), use median (x$column,na.rm=TRUE)
+--> to do it based on the first letter of the name, use grep()
+--> e.g. to get data from countries beginning with A through F, use new<-d[grep("^[A-F]",d$country),]
+
+par(mfrow=c(r,c)) will set up a panel of n number of row (r) and columns(c)
+this can be useful when making a panel of box plots and bar plots, for example. follow this commmant with a list of boxplot(d$column) and barplot(d$column) that you want to include
+
+hist(log(d$column),freq=FALSE,col="red",main="Title",xlab="xaxislabel",ylab="yaxislabel",ylim=c(yaxisscale))
+
+
+in hist(), setting freq=FALSE will scale the Y acis to represent the proportion of observations falling into each bin rather than the count
+
+to add a line of a mean value to your histogram, use abline(v=mean((d$column),na.rm=TRUE),col="",lwd=#,lty="dashed")
+--> v= vertical, h=horizontal
+-->lwd=line width/thickness
+-->lty= line type (dashed,dotted, 2)
+
+to superimpose a density() curve onto a histogram, use lines(density()) function
+--> lines(density(d$value),col="")
+
+sort() can be used to sort a dataset into a table when combined with table()
+-->e.g.: to find the most common form of a variable, use sort(table(d$column),decreasing=TRUE)
+-->note: to find the least common, use decreasing=FALSE
 
