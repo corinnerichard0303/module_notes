@@ -137,3 +137,53 @@ sort() can be used to sort a dataset into a table when combined with table()
 -->e.g.: to find the most common form of a variable, use sort(table(d$column),decreasing=TRUE)
 -->note: to find the least common, use decreasing=FALSE
 
+~ can be used as "by", so if you want to make a box plot of a variable on y by x, you would use "boxplot(d$columny)~d$columnx) 
+
+p <- ggplot(data = d, aes(x = column, y = column))  #define the variables
+p <- p + geom_boxplot()  #graph them in a boxplot
+p <- p + theme(axis.text.x = element_text(angle = 90))  #put x-axis names at 90deg
+p <- p + ylab("yaxislabel")  #rename y-axis title
+p  #show me the graph
+
+scatterplot: use plot(x=$column, y=d$column)
+
+p <- ggplot(data = d, aes(x = column, y = column), color = factor(column)))  # first, we build a plot object and color points by a specific variable
+p <- p + xlab("xaxislabel") + ylab("yaxislabel")  # then we modify the axis labels
+p <- p + geom_point()  # then we make a scatterplot
+p <- p + theme(legend.position = "bottom", legend.title = element_blank())  # then we modify the legend to haave no legend title
+p  # and, finally, we plot the object
+
+if you wanted the above variables to be separated in a grid, use facet_wrap()
+p<-p+facet_wrap(~column,ncol=4) #the column is the same used in factor(column) above
+p<-p+theme(legend.position="none")
+p
+
+to add a linear regression line: p + geom_smooth(method="lm", full range=TRUE)
+--> lm = linear model (straight ordinary least squares)
+-->loess=local regression (localized polynomial curves)
+-->gam=generalized additive model (smooth splines, scalabale alternative to loess for larger datasets)
+-->glm=generalized linear model (for non-continuous outcomes (logistic regression for binary data))
+
+you can change the formula of the shape of the line to not be y~x by including ,formula = in the argument above
+--> quadratic: formula = y~poly(x,2)
+-->logarithmic: formula=y~log(x)
+--> se: standard error confidence band (TRUE displays the grey shadow)
+--> level: defaults to 95% confidence
+--> span=controls how wiggly the curve is, defaults to 0.75
+
+include p<-p+geom_point() priot to the geom_smooth() argument to include scatter points underneath the line
+
+aggregate() gives a summary of statistics defined by a particular function FUN=
+e.g. aggregate(d$column1 ~ d$column1, FUN="mean", na.rm=TRUE) will give the mean of the column1 values sorted by column2
+
+reminder, d["column']=d$column
+
+use %>% to pipe together a long line of code
+e.g.: to add a variable "binomial" to a data fram concatenating Genus and Species, trimming the data to only include binomial, family, mean female body mass and mean male body mass, grouped by binomial and averages calculated:
+s <- d %>%
++ mutate(Binomial = paste(Genus, Species, sep = " ")) %>%
++ select(Binomial, Body_mass_female_mean, Body_mass_male_mean) %>%
++ group_by(Binomial) %>%
++ summarise(avgF = mean(Body_mass_female_mean, na.rm = TRUE), avgM = mean(Body_mass_male_mean,na.rm = TRUE), na.rm = TRUE))
+> s
+
