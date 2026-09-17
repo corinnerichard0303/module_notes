@@ -187,3 +187,56 @@ s <- d %>%
 + summarise(avgF = mean(Body_mass_female_mean, na.rm = TRUE), avgM = mean(Body_mass_male_mean,na.rm = TRUE), na.rm = TRUE))
 > s
 
+Measures of central tendency (mode, median, and mean) are relative to additive or linear observations
+
+Harmonic mean: the reciprocal of the average of reciprocals of a set of values (e.g. the mean of a set of ratios or rates); equalizes the weights of each data point
+
+Geometric mean: for multiplicative processes: the nth root of the product of the values (antilog of the averaged log values); particularly useful when values are not independent of each other or make large fluctuations
+
+function name<-function(arguments to pass){code to run}
+e.g. for a vector x, gm1 <-function(x){prod(x)^(1/length(x))}
+
+na.rm=TRUE and na.omit() can exclude NA values
+
+sum of squares: the sum of the squared deviations of a set of values from the mean
+--> for a vector x, ss1<-function(x){sum((x-mean(x))^2)}
+--> OR ss2 <- function(x) {sum(x^2) - length(x) * mean(x)^2}
+
+average deviation of values from the mean = mean squared deviation
+--> variance
+population variance = sum of squares/N
+pop_v<-function(x){sum((x-mean(x))^2)/(length(x))}
+
+if you are sampling and not representing an entire population, you need to use sample variance (estimator of the population of variance) = sum of squares/(n-1)
+--> n-1 is the degrees of freedom implied by the sample
+sample_v<-function(x){sum((x-mean(x))^2)/(length(x)-1)}
+(can also use the built in var(X))
+
+plot(c(0,50), c(0,15), type="n", xlab="xaxislabel", ylab="yaxislabel")
+will set up an empty plot with an x-axis of 0-50 and a y-axis of 0-15
+
+for(counter in vector){code to run}
+for (n in seq(5, 50, 5)) # samples of 5, 10, 15... for (n in seq(5, 50,
+for (n in seq(5, 50, 5)) # samples of 5, 10, 15... 5)) # samples of 5,10,
+for (n in seq(5, 50, 5)) # samples of 5, 10, 15... 15...
+{for (i in 1:50) # 50 replicates for (i in 1:50) # 50 replicates
+{x <- rnorm(n, mean = 10, sd = 2) points(n, var(x))}}
+
+pop_sd<-function(x){sqrt(pop_v(x))}
+sample_sd<-function(x){sqrt(sample_v(x))}
+sd(x)
+
+standard error of the mean
+SE=square root of he average sample variance
+  =square root of (sample variance/number of observations)
+  =(sample standard deviation)/square root of (number of observations)
+  
+sciplot: has se() for standard error
+
+qnorm(0.025, mean =0, sd=1) will give the number of standard deviations away from the mean that correspont to 2.5% of the normal distribution with mean =0 and sd=1
+
+cex= sets the size of the points being plotted
+
+quantile() gives you the observations satisfying the nth quantile
+quantile(set, c(0.25,0.95)) will give the 25% and 95% confidence intervals
+
