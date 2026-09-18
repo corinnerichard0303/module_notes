@@ -240,3 +240,32 @@ cex= sets the size of the points being plotted
 quantile() gives you the observations satisfying the nth quantile
 quantile(set, c(0.25,0.95)) will give the 25% and 95% confidence intervals
 
+Rules of Probability
+Pr (+) = Probability that something occurs = 1
+Pr (∅) = Probability that nothing occurs = 0
+Pr (𝐴)= Probability that a particular event 𝐴occurs
+0 ≤ Pr(𝐴) ≤ 1
+
+UNION
+Pr (𝐴⋃𝐵) = Probability that a particular event 𝐴 or a particular event 𝐵occurs
+Pr (𝐴⋃𝐵) = Pr (𝐴) + Pr (𝐵) - Pr (𝐴⋂𝐵)
+If event 𝐴and 𝐵are mutually exclusive, then this simplifies to Pr(𝐴)+ Pr(𝐵)
+
+INTERSECTION
+Pr (𝐴⋂𝐵)= Probability that both 𝐴and 𝐵 occur simultaneously
+Pr (𝐴⋂𝐵)= Pr(𝐴|𝐵) × Pr (𝐵) = Pr (𝐵| 𝐴) × Pr (𝐴)
+where the pipe operator ( | ) can be read as “given”.
+If the 2 events are independent (i.e., if the probability of one does not depend on the probability of the other), then Pr (𝐴 ⋂ 𝐵)
+simplifies to… Pr (𝐴) × Pr (𝐵)
+If Pr (𝐴 ⋂ 𝐵) = 0, then we say the events are mutually exclusive (e.g., you cannot have a die roll be 1 and 2)
+
+Pr (Ā) = Probability of the complement of 𝐴(i.e., not 𝐴) = 1 - Pr(𝐴)
+
+Conditional Probability is the probability of an event occuring after taking into account the occurrence of another event, i.e., one event is conditioned on the occurrence of a different event.
+For example, the probability of a die coming up as a “1” given that we know the die came up as an odd number (“1”, “3”, or “5”).
+Pr (𝐴 | 𝐵) = Pr (𝐴 ⋂ 𝐵) ÷ Pr (𝐵)
+If event 𝐴 and event 𝐵 are independent, then... 
+Pr (𝐴 | 𝐵) = [ Pr(𝐴) × Pr (𝐵) ] ÷ Pr (𝐵) = Pr (𝐴)
+If event 𝐴 and 𝐵 are dependent, then Pr (𝐴 | 𝐵) ≠ Pr (𝐴)
+
+More notes on probability in module 8
