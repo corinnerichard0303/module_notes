@@ -269,3 +269,9 @@ Pr (𝐴 | 𝐵) = [ Pr(𝐴) × Pr (𝐵) ] ÷ Pr (𝐵) = Pr (𝐴)
 If event 𝐴 and 𝐵 are dependent, then Pr (𝐴 | 𝐵) ≠ Pr (𝐴)
 
 More notes on probability in module 8
+
+q-q plots (quantile-quantile) are used to check if your data follows a normal distribution by plotting your sample quantiles against theoretical normal quantiles
+qqnorm(y): creates a scatter plot of the data vector y against the expected normal distribution (this should be a straight line)
+qqline(y) adds a straight reference line passing through the first and third quartiles (25th and 75th percentiles)
+qqplot(x,y) compares two independent samples against each other rather than a theoretical distribution
+
