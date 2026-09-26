@@ -275,3 +275,14 @@ qqnorm(y): creates a scatter plot of the data vector y against the expected norm
 qqline(y) adds a straight reference line passing through the first and third quartiles (25th and 75th percentiles)
 qqplot(x,y) compares two independent samples against each other rather than a theoretical distribution
 
+under t.test(), alternative = "two.sided" is default, but if you desire to run a one-tailed, set it equal to "greater" or "less"
+--> you can also add conf.level = 0.95
+
+welch's t-test is used when two samples are independent and we cannot assume the variances of the two samples are equal
+
+var.test() conducts a statistical test on the ratio of variances
+
+We REJECT a 𝐻0 if the p value obtained for a given Z or T test statistic is < 𝛼
+CIs for our sample statistic are calculated as mean ± 𝑇(1−𝛼/2) or 𝑍(1−𝛼/2) x SEM, and we can REJECT a 𝐻0 if the (1-𝛼) CI around does not include the expected value of the statistic
+When the sample size > 30, or when we are dealing with proportions, we use Z quantiles for calculating CIs and p values, but for sample size < 30, we use T quantiles
+
