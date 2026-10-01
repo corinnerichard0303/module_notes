@@ -330,5 +330,28 @@ beta0 <- mean(d$variable1) - beta1 * mean(d$variable2)
 
 more details in module 12 for adding regression lines to plots for various reasons
 
+ANOVA Table:
+Source (regression, error, total)
+SUM of squares (SSR, SSE, SSY)
+Degree of Freedom (1, n-2, n-1)
+Mean squares SS/df (MSR, MSE, MSY)
+F ratio (just for regression)
 
+adding a legend to a plot legend("top", c(list of legend items))
+
+summary.aov() makes an ANOVA table
+
+calculate a r-square by doing SSR/SSY
+SSY: sum of squares of Y (total variation in y variable)
+SSR: regression sum of squares (variance explained by model)
+SSE: error sum of squares
+SSY = SSR+SSE
+
+library(car)
+qqPlot() provides a trendline and confidence intervals that alloq us to see exactly which points make the sample fall outside of normality
+
+shapiro.test() indicates a p-value (remember a lower p value indicates deviation from normality)
+
+model<- lm(data=d, variable1 ~ variable2)
+summary(model) 
 
