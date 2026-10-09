@@ -355,3 +355,44 @@ shapiro.test() indicates a p-value (remember a lower p value indicates deviation
 model<- lm(data=d, variable1 ~ variable2)
 summary(model) 
 
+box plot --> library(curl) --> plot(d$variable 1~d$variable 2)
+make sure stringsAsFactors=TRUE when loading dataset
+
+We can use the unique() or levels() function to list all of the different majors in our dataset. The latter does this alphabetically. The row() command returns an index of row numbers, which we can then use to recode “major” into our new variable.
+
+m <- aov(data = d, variable1 ~ variable2)
+summary(m)
+par(mfrow- c(2,2))
+plot(m)
+This creates plot with 4 ANOVA plots
+
+Releveling: running regression models automatically picks the first factor level alphabetically as the baseline reference category. relevel() lets you choose a more meaningful baseline
+relevel(cariable, ref="desired_level") to shift a group to the first position
+OR
+d$variable,_ factor(d$variable, levels=c("list", "in", "order"))
+check with head(d)
+
+to add means and mean points to a boxplot:
+means<-summarize(group_by(d,variable1), mean(variable2))
+points(1:4, means$`mean(variable2)`, pch - 4, cex=1.5)
+
+m <- kruskal.test(data = d, variable2 ~ variable1
+alternative to a one-way ANOVA that relaxes the need for normality in the distribution of data in each group (testing that the medians don't differ rather than the means)
+
+m <- aov(data = d, variable2 ~ variable1A * variable1B)
+testing variance based on combined effects
+
+Type I sum of squares: when you want to control on factor, leaving the others to explain only any remaining differences
+Type II; compares the main effects of each group assuming the interaction between them is minimal
+Type III: when there is a significant interaction effect
+
+anova() in the {car} package can be used to run type II and III sums of squares
+m1<-aov(data=d, variable 2 ~variable1A+variable1B)
+m1<-anova(m1, type="II")
+
+obs.table<-table(d$vairable)
+chisq.test(x = obs.table, p = c(0.25, 0.25, 0.25, 0.25))  # here p is a vector of expected proportions... default is uniform
+
+obs.table<-table(d$variable1, d$variable2)
+moasaicplot(t(obs.table), main= "Title", col=c("darkseagreen","grey"))
+
