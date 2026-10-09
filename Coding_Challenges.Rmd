@@ -396,3 +396,5 @@ chisq.test(x = obs.table, p = c(0.25, 0.25, 0.25, 0.25))  # here p is a vector o
 obs.table<-table(d$variable1, d$variable2)
 moasaicplot(t(obs.table), main= "Title", col=c("darkseagreen","grey"))
 
+ANCOVA: we are looking at the relationship between one or more continuous predictor variables and a continuous response variable within each of one or more categorical groups
+
