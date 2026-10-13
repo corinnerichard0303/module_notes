@@ -398,3 +398,19 @@ moasaicplot(t(obs.table), main= "Title", col=c("darkseagreen","grey"))
 
 ANCOVA: we are looking at the relationship between one or more continuous predictor variables and a continuous response variable within each of one or more categorical groups
 
+A generalized linear model consists of three components:
+-The systematic or linear component: linear combination of predictor variables in our model. continuous and/or categorical. Interactions between predictors and polynomial functions of predictors can also be included
+-The error structure or random component: the probability distribution of the response variable and of the residuals in the response variable after the linear component has been removed. The probability distribution in a GLM must be from the exponential family of probability distributions, which includes the normal (Gaussian), binomial (e.g., if our response variable is binary, like “yes/no”, “presence/absence”), Poisson (e.g., if our response variable consists of count data), gamma, negative binomial, etc.
+-A link function: links the expected value of the response variable to the predictors. You can think of this as a transformation function. In GLM, our linear component yields a predicted value, but this value is not necessarily the predicted value of our response variable, 𝑌, per se. Rather, the predicted value is some needs to be transformed back into a predicted 𝑌 by applying the inverse of the link function.
+
+Link function:
+The identity link, which is used to model 𝜇, the mean value of 𝑌and is what we use implicitly in standard linear models.
+The log link, which is typically used to model log(𝜆), the log of the mean value of 𝑌.
+The logit link, which is log(𝜋/(1-𝜋)), and is typically used for binary data and logistic regression.
+
+The glm() function in R can be used for many types of generalized linear modeling, using similar formula notation to that we’ve used before, with an additional argument, family=, to specify the kind of error structure we expect in the response variable (“gaussian”, “binomial”, “poisson”, etc.): glm(y ~ x, family = "gaussian")
+
+family="Poisson" argument for poisson regression
+
+Ifresidual deviance is slighly higher than the residual degrees of freedom, data are slightly overdispersed (i.e., there is some extra, unexplained variation in the response, where the variance is greater than the mean). If this were dramatic, we might use “quasipoisson” for the family instead
+
